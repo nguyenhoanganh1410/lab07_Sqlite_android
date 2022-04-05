@@ -1,11 +1,17 @@
 package com.example.lab07_sqlite_nguyenhoanganh;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String name;
 
     public User(int id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public User(String name) {
         this.name = name;
     }
 

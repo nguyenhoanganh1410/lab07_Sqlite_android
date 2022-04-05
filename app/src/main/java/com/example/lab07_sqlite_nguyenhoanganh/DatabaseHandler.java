@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "userManager";
+    private static final String DATABASE_NAME = "UserManager";
     private static final String TABLE_CONTACTS = "user";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -24,7 +24,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT"
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT"
                 +  ")";
 
         db.execSQL(CREATE_CONTACTS_TABLE);
@@ -108,7 +108,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //                new String[] { String.valueOf(contact.getID()) });
 //    }
 
-    // Deleting single contact
+    // Deleting single user
     public void deleteContact(User contact) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CONTACTS, KEY_ID + " = ?",

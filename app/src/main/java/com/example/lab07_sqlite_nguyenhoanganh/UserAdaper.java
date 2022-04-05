@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
-
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class UserAdaper extends BaseAdapter {
     private int idLayout;
     private List<User> listLanguage;
     private int positionSelect = -1;
+    private Button btnDelete;
 
     public UserAdaper(Context context, int idLayout, List<User> listLanguage) {
         this.context = context;
@@ -82,6 +84,7 @@ public class UserAdaper extends BaseAdapter {
 
             }
         });
+       
 
         if (positionSelect == position) {
             linearLayout.setBackgroundColor(Color.rgb(223, 223, 222));
