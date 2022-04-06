@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab07_Sqlite_NguyenHoangAnh">
+        <activity android:name=".BasicSqlite"/>
+        <activity android:name=".CustomListTravel"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -17,78 +17,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<User> listUser;
-    private ListView listView;
-    private Button btnAdd;
-    private Button btnDelete;
-    private TextView txtAdd;
+    private Button btnCreen01;
+    private Button btnCreen02;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        DatabaseHandler db = new DatabaseHandler(this);
-
-//        //delete user
-//        Intent intentReceived = getIntent();
-//        Bundle data = intentReceived.getExtras();
-//        int userId = -1;
-//
-//        if(data != null){
-//            userId =  data.getInt("userId");
-//
-//        }else{
-//            Toast.makeText(MainActivity.this, "err", Toast.LENGTH_LONG).show();
-//        }
-
-
-
-        //add user
-        btnAdd = (Button) findViewById(R.id.button);
-        btnDelete = (Button) findViewById(R.id.button2);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_home);
+        btnCreen01 = (Button) findViewById(R.id.button4);
+        btnCreen02 = (Button) findViewById(R.id.button6);
+        btnCreen01.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-
+                openNewActivity();
             }
         });
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnCreen02.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                //get value in textAdd
-                txtAdd = findViewById(R.id.editTextTextPersonName);
-                String value =  txtAdd.getText().toString();
-                if(value.length()!=0){
-                    db.addContact(new User(value));
-                    txtAdd.setText("");
-                    Toast.makeText( MainActivity.this,"Add Succesfully!" , Toast.LENGTH_LONG).show();
-//                    //render
-                    UserAdaper adapter = new UserAdaper(MainActivity.this
-                            , R.layout.activity_item_list,  renderData(db));
-                    listView.setAdapter(adapter);
-                }
-                else{
-                    Toast.makeText( MainActivity.this,"Add faild!" , Toast.LENGTH_LONG).show();
-                }
+                openListTravel();
             }
         });
-
-
-        listView = (ListView) findViewById(R.id.mobile_list);
-        UserAdaper adapter = new UserAdaper(this, R.layout.activity_item_list,  renderData(db));
-        listView.setAdapter(adapter);
     }
 
-    //render list user into array
-    public List<User> renderData(DatabaseHandler db){
-        // Reading all contacts
-        List<User> list = new ArrayList<User>();
-        List<User> contacts = db.getAllContacts();
-        for (User cn : contacts) {
-            list.add(cn);
-        }
-
-        return list;
+    public void openNewActivity(){
+        Intent intent = new Intent(this, BasicSqlite.class);
+        startActivity(intent);
     }
+    public void openListTravel(){
+        Intent intent = new Intent(this, CustomListTravel.class);
+        startActivity(intent);
+    }
+
 }
