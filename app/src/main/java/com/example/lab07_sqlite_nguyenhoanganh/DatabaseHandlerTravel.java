@@ -43,7 +43,7 @@ public class DatabaseHandlerTravel extends SQLiteOpenHelper {
     }
 
     // code to add the new contact
-    void addContact(User contact) {
+    void addContact(Travel contact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -73,8 +73,8 @@ public class DatabaseHandlerTravel extends SQLiteOpenHelper {
 //    }
 
     // code to get all contacts in a list view
-    public List<User> getAllContacts() {
-        List<User> contactList = new ArrayList<User>();
+    public List<Travel> getAllContacts() {
+        List<Travel> contactList = new ArrayList<Travel>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
 
@@ -84,7 +84,7 @@ public class DatabaseHandlerTravel extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                User contact = new User();
+                Travel contact = new Travel();
                 contact.setId(Integer.parseInt(cursor.getString(0)));
                 contact.setName(cursor.getString(1));
 
@@ -111,7 +111,7 @@ public class DatabaseHandlerTravel extends SQLiteOpenHelper {
 //    }
 
     // Deleting single user
-    public void deleteContact(User contact) {
+    public void deleteTravel(Travel contact) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
                 new String[] { String.valueOf(contact.getId()) });

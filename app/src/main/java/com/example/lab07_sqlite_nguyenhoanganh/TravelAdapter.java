@@ -32,7 +32,7 @@ public class TravelAdapter extends BaseAdapter {
     private int idLayout;
     private List<Travel> listTravel;
     private int positionSelect = -1;
-
+    private int idx = 1;
     public TravelAdapter(Context context, int idLayout, List<Travel> listLanguage) {
         this.context = context;
         this.idLayout = idLayout;
@@ -65,21 +65,33 @@ public class TravelAdapter extends BaseAdapter {
 
         TextView tvName = (TextView) convertView.findViewById(R.id.textView2);
         TextView tvNum = (TextView) convertView.findViewById(R.id.textView);
-
+        ImageView imgDelete = (ImageView) convertView.findViewById(R.id.imageView);
         final ConstraintLayout linearLayout = (ConstraintLayout ) convertView.findViewById(R.id.idItemTravel);
         final Travel travel = listTravel.get(position);
 
         if (listTravel != null && !listTravel.isEmpty()) {
 
             tvName.setText(String.valueOf(travel.getName()));
-            tvNum.setText(String.valueOf(travel.getId()));
+            tvNum.setText(String.valueOf(listTravel.indexOf(travel) + 1));
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    positionSelect = position;
+                    //delete
+                    DatabaseHandlerTravel db = new DatabaseHandlerTravel(context);
+                    db.deleteTravel(travel);
+                    listTravel.remove(position);
+                    notifyDataSetChanged();
+                    Toast.makeText(context,"successfully deleted !" , Toast.LENGTH_LONG).show();
+                }
+            });
 
         }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,String.valueOf(travel.getId()) , Toast.LENGTH_LONG).show();
+            //    Toast.makeText(context,String.valueOf(travel.getId()) , Toast.LENGTH_LONG).show();
                 positionSelect = position;
                 notifyDataSetChanged();
 
